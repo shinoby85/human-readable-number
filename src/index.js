@@ -2,13 +2,14 @@ let firstNum = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', '
 let secondNum = ['null', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen']
 let thirdNum = ['null', 'ten', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety']
 module.exports =function toReadable(number) {
+    if (number===0) return firstNum[0]
+    if(number%100===0) return (firstNum[number/100]+ ' hundred ').trim()
+
     let strNum = String(number);
-    if (strNum.length === 3 && Number(strNum.substr(1,2))!==0) {
+    if (strNum.length === 3) {
         return converNum(strNum[0],true)+converNum(strNum.substr(1,2))
     }
-    else if (strNum.length === 3){
-        return converNum(strNum[0],true)
-    }
+
     if (strNum.length === 1){
         return firstNum[Number(strNum)]
     }
